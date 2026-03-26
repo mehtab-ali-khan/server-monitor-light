@@ -123,3 +123,20 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Celery
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+
+# Beat schedule — runs every 1 minute
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    "check-all-urls-every-minute": {
+        "task": "api.tasks.check_all_urls",
+        "schedule": 60.0,
+    },
+}
