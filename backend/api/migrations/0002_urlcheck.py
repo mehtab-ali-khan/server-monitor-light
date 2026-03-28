@@ -7,17 +7,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0001_initial'),
+        ("api", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='UrlCheck',
+            name="UrlCheck",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status_code', models.IntegerField(blank=True, null=True)),
-                ('checked_at', models.DateTimeField(auto_now_add=True)),
-                ('url', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='checks', to='api.url')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("status_code", models.IntegerField(blank=True, null=True)),
+                ("checked_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "url",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="checks",
+                        to="api.url",
+                    ),
+                ),
             ],
         ),
     ]

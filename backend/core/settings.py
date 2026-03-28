@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -147,7 +148,6 @@ CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
 
 # Beat schedule — runs every 1 minute
-from celery.schedules import crontab
 
 CELERY_BEAT_SCHEDULE = {
     "check-all-urls-every-minute": {

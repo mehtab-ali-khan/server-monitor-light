@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import UrlCheckListView, UrlListCreateView
 
 app_name = "api"
