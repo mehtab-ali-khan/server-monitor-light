@@ -57,6 +57,9 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
     r"https://.*\.vercel\.app",
 ]
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+
 ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
