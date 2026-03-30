@@ -26,5 +26,5 @@ jobs:
             git fetch origin
             git checkout main
             git pull origin main
-            docker compose up -d --build
-            docker compose ps
+            docker compose -f prod/docker-compose.yml up -d --build
+            docker compose -f prod/docker-compose.yml ps
