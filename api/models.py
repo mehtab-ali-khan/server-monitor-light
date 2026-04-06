@@ -13,7 +13,7 @@ class UrlPing(models.Model):
     url = models.ForeignKey(Url, on_delete=models.CASCADE, related_name="pings")
     status_code = models.IntegerField()
     time = models.DateTimeField(auto_now_add=True)
-    error_snapshot = models.CharField(max_length=1000, null=True, blank=True)
+    error = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.url.url} — {self.status_code} at {self.time}"

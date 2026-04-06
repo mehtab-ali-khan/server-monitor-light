@@ -26,7 +26,9 @@ jobs:
             git fetch origin
             git checkout main
             git reset --hard origin/main
-            docker compose -f prod/docker-compose.yml up -d --build
+            docker compose -f prod/docker-compose.yml build backend
+            docker compose -f prod/docker-compose.yml run --rm backend python manage.py migrate
+            docker compose -f prod/docker-compose.yml up -d --no-build
             docker compose -f prod/docker-compose.yml restart nginx
             docker compose -f prod/docker-compose.yml ps
             docker image prune -f

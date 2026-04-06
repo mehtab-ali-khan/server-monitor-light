@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from .models import Url, UrlPing
 from .serializers import UrlPingSerializer, UrlSerializer
-from .utils import get_snapshot_url
+from .utils import get_error_url
 
 
 class UrlListCreateView(generics.ListCreateAPIView):
@@ -12,7 +12,7 @@ class UrlListCreateView(generics.ListCreateAPIView):
     serializer_class = UrlSerializer
 
 
-class UrlLatestPingListView(generics.ListAPIView):
+class UrlPingListView(generics.ListAPIView):
     serializer_class = UrlPingSerializer
 
     def get_queryset(self):
@@ -29,17 +29,16 @@ class UrlLatestPingListView(generics.ListAPIView):
         )
 
 
-class PingSnapshotView(generics.RetrieveAPIView):
+class UrlPingErrorView(generics.RetrieveAPIView):
     queryset = UrlPing.objects.all()
-    lookup_field = "pk"
 
     def retrieve(self, request, *args, **kwargs):
         ping = self.get_object()
 
-        if not ping.error_snapshot:
+        if not ping.error:
             return Response(
                 {"error": "No snapshot for this ping"}, status=status.HTTP_404_NOT_FOUND
             )
 
-        url = get_snapshot_url(ping.error_snapshot)
+        url = get_error_url(ping.error)
         return Response({"snapshot_url": url})

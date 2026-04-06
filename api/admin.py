@@ -11,6 +11,6 @@ class UrlAdmin(admin.ModelAdmin):
 
 @admin.register(UrlPing)
 class UrlPingAdmin(admin.ModelAdmin):
-    list_display = ["url", "status_code", "time", "error_snapshot"]
+    list_display = ["url", "status_code", "time", "error"]
     list_filter = ["status_code"]
     search_fields = ["url__url"]

@@ -4,7 +4,7 @@ from datetime import datetime
 import boto3
 
 
-def upload_snapshot(html_content, url):
+def upload_error(html_content, url):
     client = boto3.client(
         "s3",
         aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
@@ -14,7 +14,7 @@ def upload_snapshot(html_content, url):
 
     timestamp = datetime.utcnow().strftime("%Y-%m-%d-%H-%M-%S")
     clean_url = url.replace("https://", "").replace("http://", "").replace("/", "_")
-    key = f"snapshots/{clean_url}/{timestamp}.html"
+    key = f"errors/{clean_url}/{timestamp}.html"
 
     client.put_object(
         Bucket=os.getenv("AWS_BUCKET_NAME"),
@@ -26,7 +26,7 @@ def upload_snapshot(html_content, url):
     return key
 
 
-def get_snapshot_url(key):
+def get_error_url(key):
     client = boto3.client(
         "s3",
         aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
