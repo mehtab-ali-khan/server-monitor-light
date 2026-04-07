@@ -2,9 +2,9 @@ from django.db.models import OuterRef, Subquery
 from rest_framework import generics, status
 from rest_framework.response import Response
 
-from .models import Url, UrlPing
-from .serializers import UrlPingSerializer, UrlSerializer
-from .utils import get_error_url
+from api.models import Url, UrlPing
+from api.serializers import UrlPingSerializer, UrlSerializer
+from api.utils import get_error_url
 
 
 class UrlListCreateView(generics.ListCreateAPIView):

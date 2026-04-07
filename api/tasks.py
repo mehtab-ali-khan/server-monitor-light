@@ -1,8 +1,8 @@
 import requests
 from celery import shared_task
 
-from .models import Url, UrlPing
-from .utils import upload_error
+from api.models import Url, UrlPing
+from api.utils import upload_error
 
 
 @shared_task

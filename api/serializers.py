@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Url, UrlPing
+from api.models import Url, UrlPing
 
 
 class UrlSerializer(serializers.ModelSerializer):

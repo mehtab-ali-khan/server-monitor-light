@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import UrlListCreateView, UrlPingErrorView, UrlPingListView
+from api.views import UrlListCreateView, UrlPingErrorView, UrlPingListView
 
 app_name = "api"
 
