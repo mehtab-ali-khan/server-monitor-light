@@ -7,8 +7,8 @@ from api.serializers import UrlPingSerializer, UrlSerializer
 from api.utils import get_error_url
 
 
-class UrlListCreateView(generics.ListCreateAPIView):
-    queryset = Url.objects.all().order_by("-created_at")
+class UrlCreateView(generics.CreateAPIView):
+    queryset = Url.objects.all()
     serializer_class = UrlSerializer
 
 
@@ -25,7 +25,7 @@ class UrlPingListView(generics.ListAPIView):
         return (
             UrlPing.objects.filter(time=Subquery(latest))
             .select_related("url")
-            .order_by("url_id")
+            .order_by("-url_id")
         )
 
 
@@ -40,5 +40,5 @@ class UrlPingErrorView(generics.RetrieveAPIView):
                 {"error": "No snapshot for this ping"}, status=status.HTTP_404_NOT_FOUND
             )
 
-        url = get_error_url(ping.error)
+        url = get_error_url(ping.s3_key)
         return Response({"snapshot_url": url})

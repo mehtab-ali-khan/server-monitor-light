@@ -14,6 +14,7 @@ class UrlPing(models.Model):
     status_code = models.IntegerField()
     time = models.DateTimeField(auto_now_add=True)
     error = models.TextField(null=True, blank=True)
+    s3_key = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.url.url} — {self.status_code} at {self.time}"
