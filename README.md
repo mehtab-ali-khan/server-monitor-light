@@ -71,36 +71,9 @@ Client -> Django API -> PostgreSQL
 - `error`: response body or exception text for failures
 - `s3_key`: S3 object key for stored error HTML
 
-## Environment Variables
-
-Create a `.env` file based on `.env.example`.
-
-```env
-# Django
-SECRET_KEY=change-me
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
-
-# Database
-POSTGRES_DB=urlapp
-POSTGRES_USER=urluser
-POSTGRES_PASSWORD=strongpassword123
-DB_HOST=db
-
-# Celery / Redis
-CELERY_BROKER_URL=redis://redis:6379/0
-CELERY_RESULT_BACKEND=redis://redis:6379/0
-
-# AWS
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
-AWS_BUCKET_NAME=your-bucket
-AWS_REGION=your-region
-```
-
 ## Local Setup
 
-### Option 1: Docker Compose
+### Docker Compose
 
 This is the easiest way to run the full stack.
 
@@ -118,24 +91,6 @@ Services started by `docker-compose.yml`:
 - `celery_beat`
 - `db` on port `5432`
 - `redis` on port `6379`
-
-### Option 2: Run Locally Without Docker
-
-You will need PostgreSQL and Redis running locally first.
-
-1. Create and activate a virtual environment
-2. Install dependencies
-3. Configure `.env`
-4. Run migrations
-5. Start Django, Celery worker, and Celery beat in separate terminals
-
-```bash
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-celery -A core worker --loglevel=info
-celery -A core beat --loglevel=info
-```
 
 ## API
 
