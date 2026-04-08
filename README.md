@@ -268,8 +268,3 @@ The `prod/docker-compose.yml` setup adds:
 - `nginx` as a reverse proxy
 - persistent Docker volumes for Postgres and static/media files
 
-## Current Limitations
-
-- Test coverage is still minimal
-- The README examples reflect the intended API shape, but some failure-path behavior should be tightened up in code
-- S3 access is required for snapshot storage and retrieval
