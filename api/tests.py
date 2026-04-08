@@ -11,11 +11,11 @@ def api_client():
 
 
 @pytest.mark.django_db
-def test_url_list_returns_urls_in_descending_created_order(api_client):
-    older = Url.objects.create(url="https://older.example.com")
-    newer = Url.objects.create(url="https://newer.example.com")
+def test_url_create(api_client):
+    payload = {"url": "https://example.com"}
 
-    response = api_client.get(reverse("api:url-create"))
+    response = api_client.post(reverse("api:url-create"), payload)
 
-    assert response.status_code == 200
-    assert [item["id"] for item in response.json()] == [newer.id, older.id]
+    assert response.status_code == 201
+    assert response.json()["url"] == "https://example.com"
+    assert Url.objects.filter(url="https://example.com").exists()
