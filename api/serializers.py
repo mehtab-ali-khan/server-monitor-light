@@ -1,9 +1,19 @@
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 
 from api.models import Url, UrlPing
 
 
 class UrlSerializer(serializers.ModelSerializer):
+    url = serializers.URLField(
+        validators=[
+            UniqueValidator(
+                queryset=Url.objects.all(),
+                message="This URL has already been added.",
+            )
+        ]
+    )
+
     class Meta:
         model = Url
         fields = ["id", "url", "created_at"]
