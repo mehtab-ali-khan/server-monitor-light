@@ -210,3 +210,4 @@ __marimo__/
 todo.txt
 staticfiles/
 media/
+.codex

@@ -20,4 +20,4 @@ class UrlPingSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "time"]
 
     def get_has_error(self, obj):
-        return obj.s3_key is not None
+        return obj.error is not None
